@@ -1,0 +1,59 @@
+{
+  "name": "Tanjung Medika",
+  "short_name": "TanjungMedika",
+  "description": "Apotek Online Tanjung Medika",
+  "start_url": "/index.php",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#16a34a",
+  "icons": [
+    {
+      "src": "/images/Logopwa2.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/Logopwa2.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "windows"
+    },
+    {
+      "src": "/images/Logopwa2.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "macos"
+    },
+    {
+      "src": "/images/Logopwa2.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "desktop"
+    },
+    {
+      "src": "/images/Logopwa.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/Logopwa.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "windows"
+    },
+    {
+      "src": "/images/Logopwa.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "macos"
+    },
+    {
+      "src": "/images/Logopwa.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "desktop"
+    }
+  ]
+}
