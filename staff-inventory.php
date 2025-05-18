@@ -470,22 +470,22 @@ $foto_profil = isset($_SESSION['pengguna']['foto_profil']) ? $_SESSION['pengguna
         </div>
         <ul class="menu">
             <li>
-                <a href="/staff-dashboard.php">
+                <a href="staff-dashboard.php">
                     <i class="bi bi-house"></i> Dashboard
                 </a>
             </li>
             <li>
-                <a href="/staff-pesanan.php">
+                <a href="staff-pesanan.php">
                     <i class="bi bi-cart"></i> Pesanan
                 </a>
             </li>
             <li>
-                <a href="/staff-produk.php">
+                <a href="staff-produk.php">
                     <i class="bi bi-box"></i> Produk
                 </a>
             </li>
             <li>
-                <a href="/staff-kategori.php">
+                <a href="staff-kategori.php">
                     <i class="bi bi-tags"></i> Kategori
                 </a>
             </li>
@@ -495,7 +495,7 @@ $foto_profil = isset($_SESSION['pengguna']['foto_profil']) ? $_SESSION['pengguna
                 </a>
             </li>
             <li>
-                <a href="/staff-logout.php">
+                <a href="staff-logout.php">
                     <i class="bi bi-box-arrow-right"></i> Logout
                 </a>
             </li>

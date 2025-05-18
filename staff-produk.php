@@ -37,11 +37,11 @@ $stmt = $pdo->query("
     SELECT p.* 
     FROM products p
     INNER JOIN (
-        SELECT name, MAX(created_at) as latest_date 
+        SELECT name, MAX(inventory_created_at) as latest_date 
         FROM products 
         GROUP BY name
-    ) latest ON p.name = latest.name AND p.created_at = latest.latest_date
-    ORDER BY p.created_at DESC, p.name ASC
+    ) latest ON p.name = latest.name AND p.inventory_created_at = latest.latest_date
+    ORDER BY p.inventory_created_at DESC, p.name ASC
 ");
 $productList = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -731,7 +731,7 @@ function displayNotification() {
                 </a>
             </li>
             <li>
-                <a href="/staff-produk.php" class="bg-green-100">
+                <a href="staff-produk.php" class="bg-green-100">
                     <i class="bi bi-box"></i> Produk
                 </a>
             </li>
