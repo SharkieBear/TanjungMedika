@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_pengguna'])) {
     $stmt->execute([$nama_depan, $nama_belakang, $email, $posisi, $kata_sandi, $foto_profil]);
 
     // Redirect untuk menghindari resubmission
-    header("Location: admin-pengguna");
+    header("Location: admin-pengguna.php");
     exit;
 }
 
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_pengguna'])) {
     $stmt->execute([$nama_depan, $nama_belakang, $email, $posisi, $foto_profil, $id]);
 
     // Redirect untuk menghindari resubmission
-    header("Location: admin-pengguna");
+    header("Location: admin-pengguna.php");
     exit;
 }
 
@@ -91,7 +91,7 @@ if (isset($_GET['delete_id'])) {
     $stmt->execute([$id]);
 
     // Redirect untuk menghindari resubmission
-    header("Location: admin-pengguna");
+    header("Location: admin-pengguna.php");
     exit;
 }
 
@@ -359,7 +359,7 @@ $foto_profil = isset($_SESSION['pengguna']['foto_profil']) ? $_SESSION['pengguna
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="logo">
-            <img src="/images/Logo2.png" alt="Logo TanjungMedika">
+            <img src="images/Logo2.png" alt="Logo TanjungMedika">
         </div>
         <ul class="menu">
             <li>
@@ -411,7 +411,7 @@ $foto_profil = isset($_SESSION['pengguna']['foto_profil']) ? $_SESSION['pengguna
             <i class="bi bi-list"></i>
         </div>
         <div class="logo">
-            <img src="/images/Logo2.png" alt="Logo TanjungMedika">
+            <img src="images/Logo2.png" alt="Logo TanjungMedika">
         </div>
         <div class="user-menu">
     <div class="relative mr-4">
@@ -506,7 +506,7 @@ $foto_profil = isset($_SESSION['pengguna']['foto_profil']) ? $_SESSION['pengguna
                     <?php
                     // Tampilkan kata sandi berdasarkan posisi
                     if ($pengguna['posisi'] === 'Admin') {
-                        echo "Hanya Admin yang Tahu";
+                        echo "********"; // Tampilkan bintang untuk admin
                     } else {
                         echo htmlspecialchars($pengguna['kata_sandi']); // Tampilkan kata sandi dalam plain text
                     }
@@ -646,7 +646,7 @@ $foto_profil = isset($_SESSION['pengguna']['foto_profil']) ? $_SESSION['pengguna
                 <button onclick="closeEditModal()" class="text-gray-600 hover:text-gray-900">&times;</button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="admin-pengguna" enctype="multipart/form-data">
+                <form method="POST" action="admin-pengguna.php" enctype="multipart/form-data">
                     <input type="hidden" name="edit_pengguna" value="1">
                     <input type="hidden" name="id" id="editPenggunaId">
                     <input type="hidden" name="foto_profil_old" id="editPenggunaFotoProfilOld">
@@ -762,7 +762,7 @@ $foto_profil = isset($_SESSION['pengguna']['foto_profil']) ? $_SESSION['pengguna
         // Fungsi untuk menghapus pengguna
         function deletePengguna(id) {
             if (confirm("Apakah Anda yakin ingin menghapus pengguna ini?")) {
-                window.location.href = `admin-pengguna?delete_id=${id}`;
+                window.location.href = `admin-pengguna.php?delete_id=${id}`;
             }
         }
         
