@@ -392,7 +392,7 @@ $foto_profil = isset($_SESSION['pengguna']['foto_profil']) ? $_SESSION['pengguna
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="logo">
-            <img src="/images/Logo2.png" alt="Logo TanjungMedika">
+            <img src="images/Logo2.png" alt="Logo TanjungMedika">
         </div>
         <ul class="menu">
             <li>
@@ -434,7 +434,7 @@ $foto_profil = isset($_SESSION['pengguna']['foto_profil']) ? $_SESSION['pengguna
             <i class="bi bi-list"></i>
         </div>
         <div class="logo">
-            <img src="/images/Logo2.png" alt="Logo TanjungMedika">
+            <img src="images/Logo2.png" alt="Logo TanjungMedika">
         </div>
         <div class="user-menu">
     <div class="relative mr-4">

@@ -86,22 +86,42 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_stock') {
     exit();
 }
 
-// Handle AJAX request for order detail
+// Handle AJAX request for order detail (edit valdo)
 if (isset($_GET['action']) && $_GET['action'] == 'get_order_detail') {
-    $orderId = $_GET['id'];
-    $stmt = $pdo->prepare("
-        SELECT co.id, co.total, co.status, CONCAT(u.first_name, ' ', u.last_name) AS customer_name 
-        FROM customer_orders co 
-        JOIN users u ON co.user_id = u.id 
-        WHERE co.id = :id
-    ");
-    $stmt->execute(['id' => $orderId]);
-    $order = $stmt->fetch(PDO::FETCH_ASSOC);
+    header('Content-Type: application/json'); // Harus di awal
 
-    header('Content-Type: application/json');
-    echo json_encode($order);
-    exit();
+    try {
+        $orderId = $_GET['id'];
+
+        // Validasi ID (optional)
+        if (!is_numeric($orderId)) {
+            http_response_code(400);
+            echo json_encode(['error' => 'ID tidak valid']);
+            exit;
+        }
+
+        $stmt = $pdo->prepare("
+            SELECT co.id, co.total, co.status, CONCAT(u.first_name, ' ', u.last_name) AS customer_name 
+            FROM customer_orders co 
+            JOIN users u ON co.user_id = u.id 
+            WHERE co.id = :id
+        ");
+        $stmt->execute(['id' => $orderId]);
+        $order = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($order) {
+            echo json_encode($order);
+        } else {
+            http_response_code(404);
+            echo json_encode(['error' => 'Order tidak ditemukan']);
+        }
+    } catch (Exception $e) {
+        http_response_code(500);
+        echo json_encode(['error' => 'Server error: ' . $e->getMessage()]);
+    }
+    exit;
 }
+
 
 // Ambil data ringkasan tugas
 $pendingOrders = $pdo->query("SELECT COUNT(*) as count FROM customer_orders WHERE status = 'Menunggu Konfirmasi'")->fetch()['count'];
@@ -388,7 +408,7 @@ $foto_profil = isset($_SESSION['pengguna']['foto_profil']) ? $_SESSION['pengguna
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="logo">
-            <img src="/images/Logo2.png" alt="Logo TanjungMedika">
+            <img src="images/Logo2.png" alt="Logo TanjungMedika">
         </div>
         <ul class="menu">
             <li>
@@ -430,7 +450,7 @@ $foto_profil = isset($_SESSION['pengguna']['foto_profil']) ? $_SESSION['pengguna
             <i class="bi bi-list"></i>
         </div>
         <div class="logo">
-            <img src="/images/Logo2.png" alt="Logo TanjungMedika">
+            <img src="images/Logo2.png" alt="Logo TanjungMedika">
         </div>
         <div class="user-menu">
     <div class="relative mr-4">
@@ -753,6 +773,7 @@ function openEditStock(productId) {
     fetch(`staff-dashboard?action=get_product_detail&id=${productId}`)
         .then(response => response.json())
         .then(data => {
+            debug.log("Hello")
             document.getElementById("editStockId").value = data.id;
             document.getElementById("editStockValue").value = data.stock;
             document.getElementById("editExpiredDate").value = data.expired;
